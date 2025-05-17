@@ -7,11 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-
     @Autowired
     private UserService userService;
 
@@ -23,19 +21,16 @@ public class UserController {
     }
     // PUT - Update User
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,
-                                              @PathVariable("userId") Integer userId){
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") Integer userId){
         UserDto updateUser = this.userService.updateUser(userDto, userId);
         return new ResponseEntity<>(updateUser,HttpStatus.OK);
-
     }
     //DELETE - Delete User
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Integer userId){
-       this.deleteUser(userId);
-       return new ResponseEntity(new ApiResponse("User deleted Successfully",true),HttpStatus.OK);
+       this.userService.deleteUser(userId);
+       return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted Successfully",true),HttpStatus.OK);
     }
-
     // GET - Get Users
     @GetMapping("/")
     public ResponseEntity<List<UserDto>> getUsers(){

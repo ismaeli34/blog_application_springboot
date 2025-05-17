@@ -1,5 +1,4 @@
 package com.example.BlogApplicationSpringboot.response;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
