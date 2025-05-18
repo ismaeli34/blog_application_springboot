@@ -13,10 +13,8 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
-
     @Autowired
     private ModelMapper modelMapper;
-
     @Override
     public UserDto createUser(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
@@ -40,7 +38,6 @@ public class UserServiceImpl implements UserService {
         UserDto mapuserDto = modelMapper.map(user, UserDto.class);
         return mapuserDto;
     }
-
     @Override
     public List<UserDto> getAllUsers() {
         List<User> users = this.userRepo.findAll();
